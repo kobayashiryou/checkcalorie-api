@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA2}}
+          key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA1}}
           paths:
             - ~/checkcalorie
   bundle_dependencies:
@@ -36,7 +36,7 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA2 }}
+          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
       - install_bundler
@@ -53,7 +53,7 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA2 }}
+          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
       - run:
@@ -92,7 +92,7 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA2 }}
+          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
       - install_bundler
