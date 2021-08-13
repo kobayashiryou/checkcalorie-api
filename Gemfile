@@ -7,6 +7,8 @@ gem "devise_token_auth"
 
 gem "chartkick"
 
+gem "simple_calendar", "~> 2.4"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.4"
 # Use mysql as the database for Active Record
