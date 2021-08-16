@@ -58,3 +58,6 @@ Rails/UniqueValidationWithoutIndex:
 
 Rails/NotNullColumn:
   Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
