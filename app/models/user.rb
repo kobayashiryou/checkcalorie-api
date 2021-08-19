@@ -8,4 +8,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
   has_one :weight, dependent: :destroy
+  has_many :breakfasts, dependent: :destroy
+  has_many :lunchs, dependent: :destroy
+  has_many :diners, dependent: :destroy
+  has_many :snacks, dependent: :destroy
+  has_many :foods, through: :breakfasts
+  has_many :foods, through: :lunches
+  has_many :foods, through: :diners
+  has_many :foods, through: :snacks
 end
