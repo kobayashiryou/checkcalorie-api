@@ -40,6 +40,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "pry-rails"
+  gem "rails-erd"
   gem "rspec_junit_formatter"
   gem "rspec-rails"
   gem "rubocop-rails", require: false
