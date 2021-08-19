@@ -10,7 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_124800) do
+ActiveRecord::Schema.define(version: 2021_08_19_081834) do
+
+  create_table "breakfasts", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "date"
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_breakfasts_on_food_id"
+    t.index ["user_id"], name: "index_breakfasts_on_user_id"
+  end
+
+  create_table "diners", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "date"
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_diners_on_food_id"
+    t.index ["user_id"], name: "index_diners_on_user_id"
+  end
+
+  create_table "foods", charset: "utf8mb4", force: :cascade do |t|
+    t.string "meal"
+    t.integer "calorie"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lunches", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "date"
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_lunches_on_food_id"
+    t.index ["user_id"], name: "index_lunches_on_user_id"
+  end
+
+  create_table "snacks", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "date"
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_snacks_on_food_id"
+    t.index ["user_id"], name: "index_snacks_on_user_id"
+  end
+
+  create_table "trainings", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "date"
+    t.string "menu"
+    t.integer "calorie"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_trainings_on_user_id"
+  end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -48,5 +115,14 @@ ActiveRecord::Schema.define(version: 2021_08_14_124800) do
     t.index ["user_id"], name: "index_weights_on_user_id"
   end
 
+  add_foreign_key "breakfasts", "foods"
+  add_foreign_key "breakfasts", "users"
+  add_foreign_key "diners", "foods"
+  add_foreign_key "diners", "users"
+  add_foreign_key "lunches", "foods"
+  add_foreign_key "lunches", "users"
+  add_foreign_key "snacks", "foods"
+  add_foreign_key "snacks", "users"
+  add_foreign_key "trainings", "users"
   add_foreign_key "weights", "users"
 end
