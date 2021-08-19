@@ -13,9 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_08_19_081834) do
 
   create_table "breakfasts", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -25,9 +23,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
   end
 
   create_table "diners", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -44,9 +40,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
   end
 
   create_table "lunches", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -56,9 +50,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
   end
 
   create_table "snacks", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -68,9 +60,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
   end
 
   create_table "trainings", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.string "menu"
     t.integer "calorie"
     t.bigint "user_id", null: false
@@ -105,9 +95,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
   end
 
   create_table "weights", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "year"
-    t.integer "month"
-    t.integer "date"
+    t.date "date"
     t.integer "kg"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
