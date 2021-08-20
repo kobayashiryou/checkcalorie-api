@@ -1,9 +1,7 @@
 FactoryBot.define do
   factory :diner do
-    year { 1 }
-    month { 1 }
-    date { 1 }
-    user { nil }
-    food { nil }
+    date { Faker::Date.between(from: '2020-1-1', to: '2021-08-25') }
+    user
+    food
   end
 end
