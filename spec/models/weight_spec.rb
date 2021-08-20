@@ -5,14 +5,13 @@ RSpec.describe Weight, type: :model do
     subject { weight.valid? }
 
     let(:weight) { build(:weight, date: date, kg: kg) }
-    let(:date) { Faker::Date.between(from: '2020-1-1', to: '2021-08-25') }
+    let(:date) { Faker::Date.between(from: "2020-1-1", to: "2021-08-25") }
     let(:kg) { Faker::Number.between(from: 1, to: 200) }
     context "year,month,date,kgが指定されている時" do
       it "weightは作成される" do
         expect(subject).to eq true
       end
     end
-
 
     context "dateがnilの時" do
       let(:date) { nil }
