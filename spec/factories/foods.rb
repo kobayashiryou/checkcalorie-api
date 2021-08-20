@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :food do
-    meal { "MyString" }
-    calorie { 1 }
+    meal { Faker::Food.dish }
+    calorie { Faker::Number.number(digits: 5) }
   end
 end

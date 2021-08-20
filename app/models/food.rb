@@ -3,4 +3,5 @@ class Food < ApplicationRecord
   has_many :users, through: :lunches
   has_many :users, through: :deners
   has_many :users, through: :snacks
+  validates :meal, :calorie, presence: true
 end
