@@ -32,5 +32,6 @@ module Checkcalorie
     end
 
     config.api_only = true
+    config.middleware.use ActionDispatch::Flash
   end
 end
