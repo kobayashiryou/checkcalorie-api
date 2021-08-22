@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  has_one :weight, dependent: :destroy
+  has_many :weights, dependent: :destroy
   has_many :breakfasts, dependent: :destroy
   has_many :lunchs, dependent: :destroy
   has_many :diners, dependent: :destroy
