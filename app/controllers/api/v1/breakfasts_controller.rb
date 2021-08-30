@@ -5,7 +5,7 @@ class Api::V1::BreakfastsController < ApplicationController
   # GET /breakfasts
   def index
     breakfasts = Breakfast.where(user_id: current_user.id)
-    render json: breakfast
+    render json: breakfasts
   end
 
   # GET /breakfasts/1
