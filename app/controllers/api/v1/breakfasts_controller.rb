@@ -1,46 +1,46 @@
 class Api::V1::BreakfastsController < ApplicationController
-  before_action :set_weight, only: [:show, :destroy]
+  before_action :set_breakfast, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
 
-  # GET /weights
+  # GET /breakfasts
   def index
-    weights = Weight.where(user_id: current_user.id)
-    render json: weights
+    breakfasts = Breakfast.where(user_id: current_user.id)
+    render json: breakfast
   end
 
-  # GET /weights/1
+  # GET /breakfasts/1
   def show
-    render json: @weight
+    render json: @breakfast
   end
 
-  # POST /weights
+  # POST /breakfast
   def create
-    weight = current_user.weights.create!(weight_params)
-    render json: weight
+    breakfast = current_user.breakfasts.create!(breakfast_params)
+    render json: breakfast
   end
 
-  # PATCH/PUT /weights/1
+  # PATCH/PUT /breakfasts/1
   def update
-    weight = current_user.weights.find(params[:id])
-    weight.update!(weight_params)
-    render json: weight
+    breakfast = current_user.breakfasts.find(params[:id])
+    breakfast.update!(breakfast_params)
+    render json: breakfast
   end
 
-  # DELETE /weights/1
+  # DELETE /breakfasts/1
   def destroy
-    weight = current_user.weights.find(params[:id])
-    weight.destroy!
+    breakfast = current_user.breakfasts.find(params[:id])
+    breakfast.destroy!
   end
 
   private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_weight
-      @weight = Breakfast.find(params[:id])
+    def set_breakfast
+      @breakfast = Breakfast.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def breakfast_params
-      params.require(:breakfast).permit(:date, :kg)
+      params.require(:breakfast).permit(:date, :food_id)
     end
 end
