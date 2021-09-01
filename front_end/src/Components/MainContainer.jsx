@@ -1,5 +1,7 @@
 import axios from "axios"
 import React from "react"
+import ButtonFunction from './Button/Button'
+import Header from './Header/Header'
 
 class MainContainer extends React.Component {
   constructor(props) {
@@ -25,7 +27,8 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div className="app-main">
-
+        <ButtonFunction />
+        <Header />
       </div>
     );
   }
