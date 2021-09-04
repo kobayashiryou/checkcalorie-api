@@ -16,7 +16,7 @@ RSpec.describe "Weights", type: :request do
         subject
         res = JSON.parse(response.body)
         expect(res.length).to eq 3
-        expect(res[0].keys).to eq ["date", "kg", "user"]
+        expect(res[0].keys).to eq ["id", "date", "kg", "user"]
         expect(response).to have_http_status(:ok)
       end
     end
