@@ -1,7 +1,10 @@
 import axios from "axios"
 import React from "react"
-import ButtonFunction from './Button/Button'
-import Header from './Header/Header'
+
+import ButtonFunction from '../../Components/Button/Button'
+import Header from '../../Components/Header/Header'
+
+import WeightsContainer from "./WeightsContainer"
 
 class MainContainer extends React.Component {
   constructor(props) {
@@ -27,6 +30,7 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div className="app-main">
+        <WeightsContainer weightData={ this.state.weights } />
         <ButtonFunction />
         <Header />
       </div>
