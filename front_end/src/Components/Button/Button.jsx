@@ -1,12 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-function ButtonFunction() {
-  return (
-    <Button variant="contained" color="secondary">
-      Primary
-    </Button>
-  );
+
+class ButtonFunction extends React.Component {
+  render() {
+    return (
+      <Button variant="contained" color="secondary">
+        { this.props.children }
+      </Button>
+    );
+  }
 }
 
 export default ButtonFunction;
