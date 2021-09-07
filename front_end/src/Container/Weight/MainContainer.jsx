@@ -1,3 +1,4 @@
+import { Button, IconButton } from "@material-ui/core"
 import axios from "axios"
 import React from "react"
 
@@ -30,9 +31,25 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div className="app-main">
-        <WeightsContainer weightData={ this.state.weights } />
-        <ButtonFunction />
-        <Header />
+        <table className="">
+          <thead>
+            <tr>
+              <th>体重一覧</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <WeightsContainer weightData={ this.state.weights } />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ButtonFunction>追加</ButtonFunction>
+        <Header>
+          <IconButton>check</IconButton>
+          <Button>Typography</Button>
+        </Header>
       </div>
     );
   }
