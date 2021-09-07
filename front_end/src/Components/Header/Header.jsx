@@ -5,20 +5,20 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
-
-function Header() {
-  return(
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-        </IconButton>
-        <Typography variant="h6">
-          News
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar>
-  );
+class Header extends React.Component {
+  render() {
+    return(
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            { this.props.children }
+          </IconButton>
+          <Typography variant="h6">
+          </Typography>
+          <Button color="inherit">{ this.props.title }</Button>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }
-
 export default Header;
