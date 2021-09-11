@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         sessions: "api/v1/auth/sessions",
       }
       resources :weights
+      resources :tests, only: [:index]
     end
   end
 end
