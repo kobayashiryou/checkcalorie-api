@@ -1,4 +1,4 @@
-class Api::V1::BreakfastsController < ApplicationController
+class Api::V1::BreakfastsController < Api::V1::ApiController
   before_action :set_breakfast, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
 

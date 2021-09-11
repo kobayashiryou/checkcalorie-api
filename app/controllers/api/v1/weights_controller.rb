@@ -1,4 +1,4 @@
-class Api::V1::WeightsController < ApplicationController
+class Api::V1::WeightsController < Api::V1::ApiController
   before_action :set_weight, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
 
