@@ -2,10 +2,13 @@ import React, { useState, useEffect, createContext } from "react"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
 import { CommonLayout } from "components/layouts/CommonLayout"
+import { Home } from "components/pages/Home"
+import { SignUp } from "components/pages/SignUp"
+import { SignIn } from "components/pages/SignIn"
 
 
 import { User } from "./interfaces/index"
-import { getCurrentUser, signIn } from "lib/api/auth"
+import { getCurrentUser } from "lib/api/auth"
 
 
 //グローバル変数・関数(この場合、createContext)propsのバケツリレーを防ぐ、どこでも展開できる
