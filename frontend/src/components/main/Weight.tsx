@@ -35,10 +35,6 @@ export const Weight = () => {
       const res = await createWeight(data);
       console.log(res);
 
-      if (res.status === 200) {
-        setDate(res.data.date);
-        setKg(res.data.kg);
-      }
     } catch (err) {
       console.log(err);
     }
