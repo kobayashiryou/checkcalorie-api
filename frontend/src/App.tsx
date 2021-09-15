@@ -14,7 +14,6 @@ import { getCurrentUser } from "lib/api/auth"
 //グローバル変数・関数(この場合、createContext)propsのバケツリレーを防ぐ、どこでも展開できる
 export const AuthContext = createContext( { } as {
   loading: boolean
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
   isSignedIn: boolean
   setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>
   currentUser: User | undefined
@@ -71,7 +70,7 @@ export const App: React.FC = () => {
 
   return (
     <Router>
-      <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser}}>
+      <AuthContext.Provider value={{ loading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser}}>
         <CommonLayout>
           <Switch>
             <Route exact path="/signup" component={SignUp} />

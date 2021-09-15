@@ -27,7 +27,7 @@ export const signOut = () => {
 //認証済みユーザーを取得
 export const getCurrentUser = () => {
   if ( !Coockies.get("_access_token") || !Coockies.get("_client") || !Coockies.get("_uid")) return
-  return client.get("/auth/sessions", { headers: {
+  return client.get("/users", { headers: {
     "access-token": Coockies.get("_access_token"),
     "client": Coockies.get("_client"),
     "uid": Coockies.get("_uid")
