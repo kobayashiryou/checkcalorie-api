@@ -26,7 +26,6 @@ export interface User {
 
 //体重
 export interface WeightData {
-  date: Date;
-  kg: number | undefined;
-  userId: number | undefined;
+  date: Date | null
+  kg: string
 }
