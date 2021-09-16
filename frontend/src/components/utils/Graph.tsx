@@ -10,10 +10,8 @@ import {
 
 import { getWeights } from "lib/api/weights"
 import { WeightData } from "interfaces";
-import { AuthContext } from "App"
 
 export const Graph = () => {
-  const { isSignedIn, currentUser } = useContext(AuthContext);
 
   const [ weights, setWeights ] = useState<WeightData []>([])
 
@@ -34,21 +32,19 @@ export const Graph = () => {
       console.log(err)
     }
   }
-  const weightItems = weights.map((weight) => {
-    return <li>{weight.kg}</li>
-  })
+  const weightItems = weights
 
   return (
     <>
-      {
-        isSignedIn && currentUser ? (
-          <>
-            <ul>{weightItems}</ul>
-          </>
-        ) : (
-          <></>
-        )
-      }
+      <Paper>
+        <Chart
+          data={weightItems}
+        >
+          <ArgumentAxis />
+          <ValueAxis />
+          <LineSeries valueField="kg" argumentField="date" />
+        </Chart>
+      </Paper>
     </>
   )
 }
