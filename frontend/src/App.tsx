@@ -34,7 +34,7 @@ export const App: React.FC = () => {
       const res = await getCurrentUser();
       console.log(res);
 
-      if (res?.status === 200) {
+      if (res?.data.status === 200) {
         //もしresが存在していてstatusが200ならば、setIsSignedInでstateの値をtrueに更新する
         setIsSignedIn(true)
         //UserにcurrentUserの値をセット

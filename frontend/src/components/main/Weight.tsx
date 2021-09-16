@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 
 import "date-fns"
 import DateFnsUtils from "@date-io/date-fns"
@@ -11,22 +11,21 @@ import {
 } from "@material-ui/pickers"
 
 
-import { AuthContext } from "../../App"
+
 import { WeightData } from "../../interfaces"
 import { createWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
+import { Graph } from "components/utils/Graph"
 
 
 
 
 export const Weight = () => {
-  const { isSignedIn, currentUser } = useContext(AuthContext);
 
   const selectDate = new Date();
   const [ date, setDate ] = useState<Date | null>(selectDate);
   const [ kg, setKg ] = useState<string>("");
   const [ weights, setWeights ] = useState<WeightData []>([])
-  const [ newWeight, setNewWeight ] = useState<WeightData []>([])
   const [ loading, setLoading ] =useState<boolean>(true)
 
 
@@ -45,8 +44,8 @@ export const Weight = () => {
 
     setLoading(false)
   }
-  const weightItems = weights.map((weight) => {
-    return <li>{weight.kg}</li>
+  const weightItems = weights.map((weight, index) => {
+    return <li key={ index }>{weight.kg}</li>
   })
 
 
@@ -67,8 +66,7 @@ export const Weight = () => {
       const res = await createWeight(data);
       console.log(res);
 
-      setNewWeight(res.data)
-      indexWeights()
+      indexWeights();
 
     } catch (err) {
       console.log(err);
@@ -112,6 +110,7 @@ export const Weight = () => {
             >登録
             </Button>
             <span>{weightItems}</span>
+            <Graph />
           </>
         ) : (
           <></>
