@@ -12,7 +12,7 @@ import {
 
 
 
-import { WeightData } from "../../interfaces"
+import { WeightData, WeightDate } from "../../interfaces"
 import { createWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
@@ -32,7 +32,10 @@ export const Weight = () => {
   const indexWeights = async () => {
 
     try {
-      const res = await getWeights ()
+      const monthDate: WeightDate = {
+        date: date,
+      }
+      const res = await getWeights (monthDate);
       console.log(res)
 
       if(res?.status === 200) {
