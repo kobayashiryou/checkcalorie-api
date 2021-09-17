@@ -1,8 +1,8 @@
 import client from "lib/api/client"
 import Coockies from "js-cookie"
-import { WeightData } from "interfaces/index"
+import { WeightData, WeightDate } from "interfaces/index"
 
-export const getWeights = () => {
+export const getWeights = (date: WeightDate) => {
   return client.get("weights", {headers: {
     "access-token": Coockies.get("_access_token"),
     "client": Coockies.get("_client"),
