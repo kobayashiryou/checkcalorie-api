@@ -29,3 +29,7 @@ export interface WeightData {
   date: Date | null
   kg: string
 }
+
+export interface WeightDate {
+  date: Date | null
+}
