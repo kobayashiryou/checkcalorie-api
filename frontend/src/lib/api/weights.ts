@@ -17,3 +17,11 @@ export const createWeight = (data: WeightData) => {
     "uid": Coockies.get("_uid")
   }});
 }
+
+export const deleteWeight = () => {
+  return client.delete("weight/",{ headers: {
+    "access-token": Coockies.get("_access_token"),
+    "client": Coockies.get("_client"),
+    "uid": Coockies.get("_uid")
+  }});
+}
