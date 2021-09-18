@@ -13,7 +13,7 @@ import {
 
 
 import { WeightData, WeightDate } from "../../interfaces"
-import { createWeight } from "../../lib/api/weights"
+import { createWeight, deleteWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
 
@@ -54,6 +54,17 @@ export const Weight = () => {
 
   const handleChange = (date: Date | null) => {
     setDate(date);
+  }
+
+  const deleteSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await deleteWeight;
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -113,6 +124,12 @@ export const Weight = () => {
             >登録
             </Button>
             <span>{weightItems}</span>
+            <Button
+              type="submit"
+              color="secondary"
+              onClick={deleteSubmit}
+            >削除
+            </Button>
             <Graph />
           </>
         ) : (
