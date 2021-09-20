@@ -12,7 +12,7 @@ import {
 
 
 
-import { WeightData, WeightDate } from "../../interfaces"
+import { selectWeight, WeightData, WeightDate } from "../../interfaces"
 import { createWeight, deleteWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
@@ -25,17 +25,15 @@ export const Weight = () => {
   const selectDate = new Date();
   const [ date, setDate ] = useState<Date | null>(selectDate);
   const [ kg, setKg ] = useState<string>("");
-  const [ weights, setWeights ] = useState<WeightData []>([])
+  const [ weights, setWeights ] = useState<selectWeight []>([])
   const [ loading, setLoading ] =useState<boolean>(true)
 
 
   const indexWeights = async () => {
 
     try {
-      const monthDate: WeightDate = {
-        date: date,
-      }
-      const res = await getWeights (monthDate);
+
+      const res = await getWeights ();
       console.log(res)
 
       if(res?.status === 200) {
@@ -56,12 +54,19 @@ export const Weight = () => {
     setDate(date);
   }
 
-  const deleteSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const deleteSubmit = async (id: number) => {
+
+    const data: selectWeight = {
+      id: id,
+      date: null,
+      kg: ""
+    }
 
     try {
-      const res = await deleteWeight;
+      const res = await deleteWeight(id);
       console.log(res);
+
+      indexWeights();
     } catch (err) {
       console.log(err);
     }
@@ -123,13 +128,20 @@ export const Weight = () => {
               onClick={handleSubmit}
             >登録
             </Button>
-            <span>{weightItems}</span>
-            <Button
-              type="submit"
-              color="secondary"
-              onClick={deleteSubmit}
-            >削除
-            </Button>
+            <ul>
+              {
+                weights.map((weight) =>
+                <li key={ weight.id }>{weight.kg}
+                  <Button
+                    type="submit"
+                    onClick={() => deleteSubmit(weight.id)}
+                  >
+                    削除
+                  </Button>
+                </li>
+                )
+              }
+            </ul>
             <Graph />
           </>
         ) : (

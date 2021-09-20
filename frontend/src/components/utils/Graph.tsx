@@ -33,12 +33,8 @@ export const Graph = () => {
 
   const indexWeights = async () => {
 
-    const monthDate: WeightDate = {
-      date: date,
-    }
-
     try {
-      const res = await getWeights (monthDate)
+      const res = await getWeights ()
       console.log(res)
 
       if(res?.status === 200) {
