@@ -30,6 +30,12 @@ export interface WeightData {
   kg: string
 }
 
+export interface selectWeight {
+  id: number
+  date: Date | null
+  kg: string | null
+}
+
 export interface WeightDate {
   date: Date | null
 }
