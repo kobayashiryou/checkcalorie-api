@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_081834) do
 
   create_table "weights", charset: "utf8mb4", force: :cascade do |t|
     t.date "date"
-    t.integer "kg"
+    t.float "kg"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
