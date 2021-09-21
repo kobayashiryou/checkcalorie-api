@@ -9,13 +9,22 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers"
+import {
+  ArgumentAxis,
+  ValueAxis,
+  Chart,
+  SplineSeries,
+} from "@devexpress/dx-react-chart-material-ui";
+import { ArgumentScale, ValueScale } from '@devexpress/dx-react-chart';
+import Paper from '@material-ui/core/Paper';
 
 
 
-import { selectWeight, WeightData, WeightDate } from "../../interfaces"
+
+import { selectWeight, WeightData } from "../../interfaces"
 import { createWeight, deleteWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
-import { Graph } from "components/utils/Graph"
+
 
 
 
@@ -27,6 +36,7 @@ export const Weight = () => {
   const [ kg, setKg ] = useState<string>("");
   const [ weights, setWeights ] = useState<selectWeight []>([])
   const [ loading, setLoading ] =useState<boolean>(true)
+
 
 
   const indexWeights = async () => {
@@ -45,9 +55,6 @@ export const Weight = () => {
 
     setLoading(false)
   }
-  const weightItems = weights.map((weight, index) => {
-    return <li key={ index }>{weight.kg}</li>
-  })
 
 
   const handleChange = (date: Date | null) => {
@@ -63,7 +70,7 @@ export const Weight = () => {
     }
 
     try {
-      const res = await deleteWeight(id);
+      const res = await deleteWeight(data.id);
       console.log(res);
 
       indexWeights();
@@ -142,7 +149,28 @@ export const Weight = () => {
                 )
               }
             </ul>
-            <Graph />
+            <Paper>
+              <Chart
+                data={weights}
+              >
+                <ValueScale name="kg" modifyDomain={()=>[0,100]}/>
+                <ArgumentAxis />
+                <ValueAxis scaleName="kg" showTicks/>
+                <SplineSeries valueField="kg" argumentField="date" scaleName="kg" />
+              </Chart>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  label="登録年月日"
+                  format="MM/dd/yyyy"
+                  id="date-picker-dialog"
+                  value={date}
+                  onChange={handleChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date"
+                  }}
+                />
+                </MuiPickersUtilsProvider>
+            </Paper>
           </>
         ) : (
           <></>
