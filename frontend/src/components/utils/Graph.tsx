@@ -16,6 +16,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers"
+import { Line } from 'react-chartjs-2';
 
 import { getWeights } from "lib/api/weights"
 import { WeightData } from "interfaces";
@@ -27,6 +28,7 @@ export const Graph = () => {
   const [ weights, setWeights ] = useState<WeightData []>([])
   const [ maxWeight, setMaxWeight ] = useState<string>("")
   const [ date, setDate ] = useState<Date | null>(selectDate)
+
 
   const handleChange = (date: Date | null) => {
     setDate(date);
@@ -56,16 +58,7 @@ export const Graph = () => {
   return (
     <>
       <Paper>
-        <Chart
-          data={weights}
-        >
-          <ValueScale name="kg" modifyDomain={()=>[0,100]}/>
-          <ArgumentAxis />
-          <ValueAxis scaleName="kg" showGrid={false} showLine showTicks/>
-          <SplineSeries name="体重変化" valueField="kg" argumentField="date" scaleName="kg" />
-          <Animation />
-          <Legend />
-        </Chart>
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             label="登録年月日"

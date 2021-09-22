@@ -24,6 +24,7 @@ import Paper from '@material-ui/core/Paper';
 import { selectWeight, WeightData } from "../../interfaces"
 import { createWeight, deleteWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
+import { domainToASCII } from "url"
 
 
 
@@ -154,6 +155,7 @@ export const Weight = () => {
                 data={weights}
               >
                 <ValueScale name="kg" modifyDomain={()=>[0,100]}/>
+                <ArgumentScale name="date" modifyDomain={()=>[]}/>
                 <ArgumentAxis />
                 <ValueAxis scaleName="kg" showTicks/>
                 <SplineSeries valueField="kg" argumentField="date" scaleName="kg" />
