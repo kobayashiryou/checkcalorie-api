@@ -18,6 +18,14 @@ export const createWeight = (data: WeightData) => {
   }});
 }
 
+export const updateWeight = (id: number, data: WeightData) => {
+  return client.put(`weights/${id}`, data, { headers: {
+    "access-token": Coockies.get("_access_token"),
+    "client": Coockies.get("_client"),
+    "uid": Coockies.get("_uid")
+  }});
+}
+
 export const deleteWeight = (id: number) => {
   return client.delete(`weights/${id}`,{ headers: {
     "access-token": Coockies.get("_access_token"),
