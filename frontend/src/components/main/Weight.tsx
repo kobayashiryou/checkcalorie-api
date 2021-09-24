@@ -20,7 +20,7 @@ import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Fade } from "@material-ui/core"
+import { alpha } from "@material-ui/core"
 
 
 
@@ -30,6 +30,7 @@ import { createWeight, deleteWeight, updateWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import classes from "*.module.css"
 import { getDate } from "date-fns"
+import moment from "moment"
 
 
 const style = {
@@ -63,10 +64,7 @@ export const Weight = () => {
       const res = await getWeights ();
 
       if(res?.status === 200) {
-        setWeights([res.data].map((weight) => {
-          return {...weight}
-        }))
-        console.log(weights);
+        setWeights(res.data)
       }
     } catch(err) {
       console.log(err)
@@ -146,6 +144,7 @@ export const Weight = () => {
       console.log(err);
     }
   }
+
   useEffect(() => {
     indexWeights();
   }, []);
@@ -186,7 +185,7 @@ export const Weight = () => {
             <ul>
               {
                 weights.map((weight) =>
-                <li key={ weight.id }>{weight.date}<br />{weight.kg}
+                <li key={ weight.id }>{moment(weight.date).get("date")}日<br />{weight.kg}
                   <Button
                     type="submit"
                     onClick={() => deleteSubmit(weight.id)}
@@ -238,26 +237,19 @@ export const Weight = () => {
             </ul>
             <Paper>
               <Chart
-                data={weights}
+                data={weights.map(weight => {
+                  const container = {
+                    day: moment(weight.date).get("date"),
+                    daykg: weight.kg
+                  }
+                  return container
+                })}
               >
-                <ValueScale name="kg" modifyDomain={()=>[0,100]}/>
-                <ArgumentScale name="date" modifyDomain={()=>[]}/>
+                <ValueScale name="daykg" modifyDomain={()=>[0,100]}/>
                 <ArgumentAxis />
-                <ValueAxis scaleName="kg" showTicks/>
-                <SplineSeries valueField="kg" argumentField="date" scaleName="kg" />
+                <ValueAxis scaleName="daykg" showTicks/>
+                <SplineSeries valueField="daykg" argumentField="day" scaleName="daykg" />
               </Chart>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  label="登録年月日"
-                  format="MM/dd/yyyy"
-                  id="date-picker-dialog"
-                  value={date}
-                  onChange={handleChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date"
-                  }}
-                />
-                </MuiPickersUtilsProvider>
             </Paper>
           </>
         ) : (
