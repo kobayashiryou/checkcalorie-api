@@ -4,11 +4,11 @@ class Api::V1::WeightsController < Api::V1::ApiController
 
   # GET /weights
   def index
-    if params[:date]
-      weights = Weight.where(user_id: current_user.id, date: params[:date].in_time_zone.all_month)
-    else
-      weights = Weight.where(user_id: current_user.id, date: Time.current.all_month)
-    end
+    weights = if params[:date]
+                Weight.where(user_id: current_user.id, date: params[:date].in_time_zone.all_month)
+              else
+                Weight.where(user_id: current_user.id, date: Time.current.all_month)
+              end
     render json: weights
   end
 
