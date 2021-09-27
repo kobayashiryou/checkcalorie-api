@@ -7,12 +7,12 @@ RSpec.describe "Weights", type: :request do
     let!(:current_user) { create(:user) }
     let(:headers) { current_user.create_new_auth_token }
     before do
-      create_list(:weight, 3, user: current_user, date: Faker::Date.between(from: "2021-9-1", to: "2021-09-25"))
+      create_list(:weight, 3, user: current_user, date: Faker::Date.in_date_period(year: Date.today.year, month: Date.today.month))
       create_list(:weight, 2)
     end
 
     context "ログインユーザーがuserである時" do
-      it "userのweights一覧が表示される" do
+      it "userの今月のweights一覧が表示される" do
         subject
         res = JSON.parse(response.body)
         expect(res.length).to eq 3
