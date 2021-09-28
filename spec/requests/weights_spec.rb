@@ -7,7 +7,7 @@ RSpec.describe "Weights", type: :request do
     let!(:current_user) { create(:user) }
     let(:headers) { current_user.create_new_auth_token }
     before do
-      create_list(:weight, 3, user: current_user, date: Faker::Date.in_date_period(year: Date.today.year, month: Date.today.month))
+      create_list(:weight, 3, user: current_user, date: Faker::Date.in_date_period(year: Time.zone.today.year, month: Time.zone.today.month))
       create_list(:weight, 2)
     end
 

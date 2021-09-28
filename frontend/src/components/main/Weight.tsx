@@ -9,14 +9,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers"
-import {
-  ArgumentAxis,
-  ValueAxis,
-  Chart,
-  SplineSeries,
-} from "@devexpress/dx-react-chart-material-ui";
-import { ValueScale } from '@devexpress/dx-react-chart';
-import Paper from '@material-ui/core/Paper';
+
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -27,6 +20,7 @@ import Box from '@material-ui/core/Box';
 import { selectWeight, WeightData } from "../../interfaces"
 import { createWeight, deleteWeight, updateWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
+import { Graph } from "components/utils/Graph"
 
 
 const style = {
@@ -162,13 +156,14 @@ export const Weight = () => {
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
+                margin="normal"
                 label="登録年月日"
                 format="MM/dd/yyyy"
                 id="date-picker-dialog"
                 value={date}
                 onChange={handleChange}
                 KeyboardButtonProps={{
-                  "aria-label": "change date"
+                  "aria-label": "change date",
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -231,22 +226,7 @@ export const Weight = () => {
                 )
               }
             </ul>
-            <Paper>
-              <Chart
-                data={weights.map(weight => {
-                  const container = {
-                    day: new Date(`${weight.date}`).getDate(),
-                    daykg: weight.kg
-                  }
-                  return container
-                })}
-              >
-                <ValueScale name="daykg" modifyDomain={()=>[0,100]}/>
-                <ArgumentAxis />
-                <ValueAxis scaleName="daykg" showTicks/>
-                <SplineSeries valueField="daykg" argumentField="day" scaleName="daykg" />
-              </Chart>
-            </Paper>
+            <Graph weightsData={weights}/>
           </>
         ) : (
           <></>
