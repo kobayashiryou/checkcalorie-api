@@ -21,6 +21,7 @@ import { selectWeight, WeightData } from "../../interfaces"
 import { createWeight, deleteWeight, updateWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core"
 
 
 const style = {
@@ -173,6 +174,28 @@ export const Weight = () => {
               onClick={handleSubmit}
             >登録
             </Button>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>date</TableCell>
+                    <TableCell>kg</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {weights.map((weight) => {
+                    <TableRow key={weight.id}>
+                      <TableCell component="th" scope="row">
+                        {weight.date}
+                      </TableCell>
+                      <TableCell>
+                        {weight.kg}
+                      </TableCell>
+                    </TableRow>
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
             <ul>
               {
                 weights.map((weight) =>
