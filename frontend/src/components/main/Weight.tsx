@@ -10,18 +10,12 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers"
 
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
-
-
-
 import { selectWeight, WeightData } from "../../interfaces"
-import { createWeight, deleteWeight, updateWeight } from "../../lib/api/weights"
+import { createWeight, updateWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core"
+import { WeightIndex } from "components/utils/WeightIndex"
+
 
 
 const style = {
@@ -35,7 +29,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 
 export const Weight = () => {
@@ -69,23 +62,6 @@ export const Weight = () => {
     setDate(date);
   }
 
-  const deleteSubmit = async (id: number) => {
-
-    const data: selectWeight = {
-      id: id,
-      date: null,
-      kg: ""
-    }
-
-    try {
-      const res = await deleteWeight(data.id);
-      console.log(res);
-
-      indexWeights();
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   const updateSubmit = async (id: number, data: WeightData) => {
     const selectData: selectWeight = {
@@ -174,81 +150,7 @@ export const Weight = () => {
               onClick={handleSubmit}
             >登録
             </Button>
-            <TableContainer component={Paper}>
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>date</TableCell>
-                    <TableCell>kg</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {weights.map((weight) => {
-                    <TableRow key={weight.id}>
-                      <TableCell component="th" scope="row">
-                        {weight.date}
-                      </TableCell>
-                      <TableCell>
-                        {weight.kg}
-                      </TableCell>
-                    </TableRow>
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <ul>
-              {
-                weights.map((weight) =>
-                <li key={ weight.id }>{new Date(`${weight.date}`).getDate()}日<br />{weight.kg}
-                  <Button
-                    type="submit"
-                    onClick={() => deleteSubmit(weight.id)}
-                  >
-                    削除
-                  </Button>
-                  <Button
-                    onClick={handleOpen}
-                  >
-                    編集
-                  </Button>
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-describedby="modal-modal-description"
-                  >
-                    <Box sx={style}>
-                      <Typography id="modal-modal-description">
-                        <TextField
-                          variant="outlined"
-                          required
-                          label="体重"
-                          value={kg}
-                          onChange={event => setKg(event.target.value)}
-                        />
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                          <KeyboardDatePicker
-                            label="登録年月日"
-                            format="MM/dd/yyyy"
-                            id="date-picker-dialog"
-                            value={date}
-                            onChange={handleChange}
-                            KeyboardButtonProps={{
-                              "aria-label": "change date"
-                            }}
-                          />
-                          {/* <Button
-                            onClick={() => updateSubmit(weight.id)}
-                          >
-                            編集
-                          </Button> */}
-                        </MuiPickersUtilsProvider>
-                      </Typography>
-                    </Box>
-                  </Modal>
-                </li>
-                )
-              }
-            </ul>
+            <WeightIndex WeightData={weights}/>
             <Graph weightsData={weights}/>
           </>
         ) : (
