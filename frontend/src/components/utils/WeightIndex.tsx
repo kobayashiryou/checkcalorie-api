@@ -100,32 +100,32 @@ export const WeightIndex = (props: any) => {
                     >
                       削除
                     </Button>
-                    {/* <Button
+                    <Button
                       onClick={handleOpen}
                     >
                       編集
                     </Button>
                     <Modal
-                      open={open}
-                      onClose={handleClose}
+                      // open={open}
+                      // onClose={handleClose}
                       aria-describedby="modal-modal-description"
                     >
-                      <Box sx={style}>
+                      <Box className={classes.paper}>
                         <Typography id="modal-modal-description">
                           <TextField
                             variant="outlined"
                             required
                             label="体重"
-                            value={kg}
-                            onChange={event => setKg(event.target.value)}
+                            // value={kg}
+                            // onChange={event => setKg(event.target.value)}
                           />
                           <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
                               label="登録年月日"
                               format="MM/dd/yyyy"
                               id="date-picker-dialog"
-                              value={date}
-                              onChange={handleChange}
+                              // value={date}
+                              // onChange={handleChange}
                               KeyboardButtonProps={{
                                 "aria-label": "change date"
                               }}
@@ -138,7 +138,7 @@ export const WeightIndex = (props: any) => {
                           </MuiPickersUtilsProvider>
                         </Typography>
                       </Box>
-                    </Modal> */}
+                    </Modal>
                   </TableCell>
                 </TableRow>
               )}
