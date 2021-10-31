@@ -1,9 +1,16 @@
 version: '3.2'
 
 services:
+  backend:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+
   database:
     restart: always
     image: mysql:5.7.32
+    platform: linux/x86_64
     ports:
       - 3306:3306
     command: --default-authentication-plugin=mysql_native_password
