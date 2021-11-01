@@ -9,3 +9,5 @@ COPY Gemfile /app/backend/Gemfile
 COPY Gemfile.lock /app/backend/Gemfile.lock
 RUN bundle install
 COPY . /app/backend
+
+# frontend

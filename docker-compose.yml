@@ -6,7 +6,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
   database:
     restart: always
     image: mysql:5.7.32
