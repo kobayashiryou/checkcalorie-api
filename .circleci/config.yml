@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA1}}
+          key: v1 -checkcalorie-api-{{.Environment.CIRCLE_SHA1}}
           paths:
             - ~/checkcalorie/api
   bundle_dependencies:
