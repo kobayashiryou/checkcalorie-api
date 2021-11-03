@@ -14,7 +14,7 @@ executors:
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: root
-    working_directory: ~/checkcalorie
+    working_directory: ~/checkcalorie/api
 commands:
   install_bundler:
     description: Bundler install
