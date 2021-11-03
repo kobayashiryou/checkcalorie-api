@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA1}}
           paths:
-            - ~/checkcalorie
+            - ~/checkcalorie/api
   bundle_dependencies:
     executor:
       name: default_container
