@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 
 import { AuthContext } from "App"
-import { Weight } from "components/main/Weight"
+import { Weight } from "components/pages/Weight"
 
 export const Home = () => {
   //Appで定義したグローバル変数
