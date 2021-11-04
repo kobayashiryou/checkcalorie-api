@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v1 -checkcalorie-api-{{.Environment.CIRCLE_SHA1}}
+          key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA1}}
           paths:
             - ~/checkcalorie/api
   bundle_dependencies:
@@ -36,16 +36,16 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-api-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
       - run:
           name: Bundle Install Dependencies
           command: |
             bundle install
       - save_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
           paths:
             - vendor/bundle
   rspec:
@@ -55,7 +55,7 @@ jobs:
       - restore_cache:
           key: v1 -checkcalorie-api-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - run:
           name: Watting stand up database
           command: |
@@ -94,7 +94,7 @@ jobs:
       - restore_cache:
           key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
       - run:
           name: Execute rubocop
