@@ -7,14 +7,14 @@ executors:
           RAILS_ENV: test
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
-          BUNDLE_PATH: api/vendor/bundle
+          BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.2.23
 
       - image: circleci/mysql:5.7.32
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: root
-    working_directory: ~/checkcalorie/api
+    working_directory: ~/checkcalorie
 commands:
   install_bundler:
     description: Bundler install
@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           key: v1 -checkcalorie-{{.Environment.CIRCLE_SHA1}}
           paths:
-            - ~/checkcalorie/api
+            - ~/checkcalorie
   bundle_dependencies:
     executor:
       name: default_container
@@ -39,22 +39,23 @@ jobs:
       - restore_cache:
           key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
       - run:
           name: Bundle Install Dependencies
+          working_directory: api
           command: |
             bundle install
       - save_cache:
-          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - api/vendor/bundle
   rspec:
     executor:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-api-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - run:
