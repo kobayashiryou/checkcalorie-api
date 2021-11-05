@@ -36,11 +36,8 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
           key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
-      - working_directory: ~/checkcalorie/api
       - run:
           name: Bundle Install Dependencies
           command: |
