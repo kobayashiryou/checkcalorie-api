@@ -35,6 +35,7 @@ jobs:
     executor:
       name: default_container
     steps:
+      - checkout
       - restore_cache:
           key: v1 -checkcalorie-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
