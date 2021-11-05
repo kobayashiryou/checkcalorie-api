@@ -36,14 +36,14 @@ jobs:
       name: default_container
     steps:
       - restore_cache:
-          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
       - install_bundler
       - run:
           name: Bundle Install Dependencies
           command: |
             bundle install
       - save_cache:
-          key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
+          key: v1 -dependencies-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
   rspec:
