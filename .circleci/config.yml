@@ -76,9 +76,10 @@ jobs:
           command: yarn install
       - run:
           name: Run rspec
+          working_directory: api
           command: |
             mkdir /tmp/test-results
-            mkdir -p ~/api/rspec
+            mkdir -p ~/rspec
             bundle exec rails db:create db:migrate
             TEST_FILES="$(circleci tests glob \"spec/**/*_spec.rb\" | circleci tests split --split-by=timings)"
             bundle exec rspec --require rails_helper \
@@ -102,6 +103,7 @@ jobs:
       - install_bundler
       - run:
           name: Execute rubocop
+          working_directory: api
           command: |
             bundle exec rubocop
 workflows:
