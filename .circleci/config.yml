@@ -17,6 +17,7 @@ executors:
     working_directory: ~/checkcalorie
 commands:
   install_bundler:
+    working_directory: api
     description: Bundler install
     steps:
       - run: gem install bundler -v 2.2.23
