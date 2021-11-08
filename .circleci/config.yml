@@ -66,6 +66,10 @@ jobs:
       - run: mv ./api/config/database.yml.ci ./api/config/database.yml
       - install_bundler
       - run:
+          command: |
+            bundle install
+          working_directory: api
+      - run:
           name: Testing DB migration and seed
           working_directory: api
           command: |
@@ -76,9 +80,10 @@ jobs:
           command: yarn install
       - run:
           name: Run rspec
+          working_directory: api
           command: |
             mkdir /tmp/test-results
-            mkdir -p ~/api/rspec
+            mkdir -p ~/rspec
             bundle exec rails db:create db:migrate
             TEST_FILES="$(circleci tests glob \"spec/**/*_spec.rb\" | circleci tests split --split-by=timings)"
             bundle exec rspec --require rails_helper \
@@ -101,7 +106,12 @@ jobs:
           key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
       - run:
+          command: |
+            bundle install
+          working_directory: api
+      - run:
           name: Execute rubocop
+          working_directory: api
           command: |
             bundle exec rubocop
 workflows:
