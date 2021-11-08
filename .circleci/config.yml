@@ -63,11 +63,12 @@ jobs:
           command: |
             dockerize -wait \
             tcp://127.0.0.1:3306 -timeout 120s
-      - run:
-          working_directory: api
-          command: |
-            mv ./config/database.yml.ci ./config/database.yml
+      - run:　mv ./api/config/database.yml.ci ./api/config/database.yml
       - install_bundler
+      - run:
+          command: |
+            bundle install
+          working_directory: api
       - run:
           name: Testing DB migration and seed
           working_directory: api
@@ -104,6 +105,10 @@ jobs:
       - restore_cache:
           key: v1 -dependencies-{{ checksum "api/Gemfile.lock" }}
       - install_bundler
+      - run:
+          command: |
+            bundle install
+          working_directory: api
       - run:
           name: Execute rubocop
           working_directory: api
