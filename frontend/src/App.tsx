@@ -10,15 +10,7 @@ import { SignIn } from "components/pages/SignIn"
 import { User } from "./interfaces/index"
 import { getCurrentUser } from "lib/api/auth"
 
-
-//グローバル変数・関数(この場合、createContext)propsのバケツリレーを防ぐ、どこでも展開できる
-export const AuthContext = createContext( { } as {
-  loading: boolean
-  isSignedIn: boolean
-  setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>
-  currentUser: User | undefined
-  setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>
-})
+import { AuthContext } from "./provider/AuthContext"
 
 export const App: React.FC = () => {
   //useStateは第一引数にstateの値（引数名は自由）,第二引数に更新の値をセットできる。
