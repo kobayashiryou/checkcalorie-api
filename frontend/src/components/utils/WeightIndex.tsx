@@ -100,12 +100,12 @@ export const WeightIndex = (props: any) => {
                     >
                       削除
                     </Button>
-                    <Button
+                    {/* <Button
                       onClick={handleOpen}
                     >
                       編集
-                    </Button>
-                    <Modal
+                    </Button> */}
+                    {/* <Modal
                       // open={open}
                       // onClose={handleClose}
                       aria-describedby="modal-modal-description"
@@ -138,7 +138,7 @@ export const WeightIndex = (props: any) => {
                           </MuiPickersUtilsProvider>
                         </Typography>
                       </Box>
-                    </Modal>
+                    </Modal> */}
                   </TableCell>
                 </TableRow>
               )}

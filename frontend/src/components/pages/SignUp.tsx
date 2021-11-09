@@ -9,7 +9,7 @@ import CardContent from "@material-ui/core/CardContent"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 
-import { AuthContext } from "App";
+import { AuthContext } from "../../provider/AuthContext";
 import { SignUpData } from "interfaces";
 import { signUp } from "lib/api/auth"
 import { AlertMessage } from "components/utils/AlertMessage"

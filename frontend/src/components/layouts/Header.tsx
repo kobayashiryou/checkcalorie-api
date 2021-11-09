@@ -13,7 +13,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 
 import { signOut } from "lib/api/auth"
 
-import { AuthContext } from "App"
+import { AuthContext } from "../../provider/AuthContext"
 
 const useStyles = makeStyles((theme: Theme) => ({
   iconButton: {
