@@ -11,7 +11,6 @@ import { User } from "./interfaces/index"
 import { getCurrentUser } from "lib/api/auth"
 
 import { AuthContext } from "./provider/AuthContext"
-import { UserInfoContext } from "./provider/UserInfoContext"
 
 export const App: React.FC = () => {
   //useStateは第一引数にstateの値（引数名は自由）,第二引数に更新の値をセットできる。
