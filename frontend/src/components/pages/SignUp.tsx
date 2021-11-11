@@ -101,7 +101,7 @@ export const SignUp = () => {
               required
               fullWidth
               label="メールアドレス"
-              value={name}
+              value={email}
               margin="dense"
               onChange={event => setEmail(event.target.value)}
             />
