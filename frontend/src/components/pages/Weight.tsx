@@ -15,7 +15,7 @@ import { createWeight, updateWeight } from "../../lib/api/weights"
 import { getWeights } from "../../lib/api/weights"
 import { Graph } from "components/utils/Graph"
 import { WeightIndex } from "components/utils/WeightIndex"
-import { UserContext } from "provider/UserInfoContext"
+
 
 
 
@@ -40,10 +40,8 @@ export const Weight = () => {
   const [ weights, setWeights ] = useState<selectWeight []>([])
   const [ loading, setLoading ] =useState<boolean>(true)
   const [ open, setOpen ] = useState(false);
-  const userInfomation = useContext(UserContext);
 
   const indexWeights = async () => {
-    console.log(userInfomation);
 
     try {
 
