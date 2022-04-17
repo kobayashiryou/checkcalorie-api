@@ -12,15 +12,6 @@ services:
       - 3000:3000
     depends_on:
       - database
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    command: yarn start
-    volumes:
-      - ./frontend:/app
-    ports:
-      - 8000:3000
   database:
     restart: always
     image: mysql:5.7.32
