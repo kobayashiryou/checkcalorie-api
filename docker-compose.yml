@@ -12,6 +12,11 @@ services:
       - 3000:3000
     depends_on:
       - database
+  front:
+    image: 298618414706.dkr.ecr.ap-northeast-1.amazonaws.com/checkcalorie-front:latest
+    command: npm run dev
+    ports:
+      - 8000:3000
   database:
     restart: always
     image: mysql:5.7.32
